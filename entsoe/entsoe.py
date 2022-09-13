@@ -1,5 +1,6 @@
 import logging
-from typing import Union, Optional, Dict, List, Literal
+from typing import Union, Optional, Dict, List
+from typing_extensions import Literal
 
 import pandas as pd
 from pandas.tseries.offsets import YearBegin, YearEnd
