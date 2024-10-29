@@ -377,7 +377,7 @@ def _parse_aggregated_bids_timeseries(soup):
     end = pd.to_datetime(period.find('timeinterval').find('end').text)
     resolution = _resolution_to_timedelta(period.find('resolution').text)
     
-    tx = pd.date_range(start=start, end=end, freq=resolution, inclusive='left')
+    tx = pd.date_range(start=start, end=end, freq=resolution, closed='left')
     df = pd.DataFrame(index=tx, columns=['Offered', 'Activated'])
     
     points = period.find_all('point')
@@ -551,7 +551,7 @@ def _parse_activated_balancing_energy_prices_timeseries(soup) -> pd.DataFrame:
     start = pd.to_datetime(period.find('timeinterval').find('start').text)
     end = pd.to_datetime(period.find('timeinterval').find('end').text)
     resolution = _resolution_to_timedelta(period.find('resolution').text)
-    tx = pd.date_range(start=start, end=end, freq=resolution, inclusive='left')
+    tx = pd.date_range(start=start, end=end, freq=resolution, closed='left')
 
     df = pd.DataFrame(index=tx, columns=['Price', 'Direction', 'ReserveType'])
 
