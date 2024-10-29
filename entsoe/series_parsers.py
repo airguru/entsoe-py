@@ -64,7 +64,7 @@ def _parse_datetimeindex(soup, tz=None):
         end = end.tz_convert(tz)
 
     delta = _resolution_to_timedelta(res_text=soup.find('resolution').text)
-    index = pd.date_range(start=start, end=end, freq=delta, inclusive='left')
+    index = pd.date_range(start=start, end=end, freq=delta, closed='left')
     if tz is not None:
         dst_jump = len(set(index.map(lambda d: d.dst()))) > 1
         if dst_jump and delta == "7D":
